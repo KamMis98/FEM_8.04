@@ -229,22 +229,23 @@ import numpy as np
 
 A1 = np.array([np.linspace(1,5,5),
                 np.linspace(5,1,5)])
-A2=np.zeros((1,3,2))
-A3=np.linspace(2,2,3)
-A4=np.linspace(2,2,3)
-A5=np.linspace(-90,-70,3)
-A6 = np.array([[10], [10], [10], [10], [10]])
+A2=np.zeros((3,2))
+A3=np.ones((2,3))
+A3=A3*2
+A4=np.linspace(-90,-70,3)
+A5=np.ones((5,1))
+A5=A5*10
 
 A=np.block([[A3],[A4]])
-A=np.block([[A],[A5]])
 A=np.block([[A2,A]])
-A=np.block([[A1],[A]])
-A=np.block([[A,A6]])
+A=np.block([[A1,A]])
+A=np.block([[A,A5]])
+
+print(A)
 
 print("##########################################")
 print("\n")
 print("####Zadanie 4######")
-
 import numpy as np
 B1 = np.array([5,4,3,2,1,10])
 B2 = np.array([0,0,2,2,2,10]) 
@@ -254,23 +255,159 @@ print("##########################################")
 
 print("\n")
 print("####Zadanie 5#####")
-C=np.max(A,1)
+C=np.max(A,0)
 print(C)
 print("##########################################")
 
 print("\n")
 print("####Zadanie 6####")
-print("#######")
-D=np.delete(B,5)
-D=np.delete(D,0)
+D=np.delete(B,0)
+D=np.delete(D,len(D)-1)
 print(D)
 print("##########################################")
 
 print("\n")
 print("####Zadanie 7####")
-print("#######")
+D[D==4]=0
 print(D)
 print("##########################################")
 
+print("####Zadanie 8####")
+E=np.delete(C,(C==np.max(C)))
+E=np.delete(E,(E==np.min(E)))
+print(E)
+print("##########################################")
 
+print("####Zadanie 9####")
+maks=np.max(A)
+print(maks)
+minim=np.min(A)
+print(minim)
+print('max')
+for i in range(len(A)):
+    zm=A[i]
+    if np.max(zm)==maks:
+        print(zm)
+print('min')
+for i in range(len(A)):
+    zm=A[i]
+    if np.min(zm)==minim:
+        print(zm)
+print("##########################################")
+print("####Zadanie 10####")
+print(D.flatten()*E.flatten())
+print('\n')
+n=len(D)
+F1=[]
+F2=[]
+F=[]
+for i in range (n):
+    if i<(n-2):
+        a=D[i+1]*E[i+2]
+        F1.append(a)
+    elif i<(n-1):
+        a=D[i+1]*E[0]
+        F1.append(a)
+    else:
+        a=D[0]*E[1]
+        F1.append(a)
+        
+for i in range (n):
+    if i<(n-3):
+        a=D[n-1]*E[n-2]
+        F2.append(a)
+    elif i<(n-2):
+        a=D[i-1]*E[n-1]
+        F2.append(a)
+    else:
+        a=D[i-1]*E[i-2]
+        F2.append(a)
 
+for i in range (n):
+    a=F1[i]-F2[i]
+    F.append(a)
+print(D)
+print(E)
+print (F)
+print("##########################################")
+
+print("####Zadanie 11####")
+     def zadanie11():
+    Q=np.round(10*np.random.rand(3,3))
+    a=0
+    for i in range(len(Q)):
+        a=a+Q[i,i]
+    return(Q,a)
+print(zadanie11())   
+print("##########################################")
+
+print("####Zadanie 12####")
+def zadanie12(n):
+    Q= np.round(10*np.random.rand(n,n))
+    for i in range(len(Q)):
+        Q[i,i]=0
+        Q[(len(Q)-1)-i,i]=0          
+    return(Q)
+print(zadanie12(3))
+print("##########################################")
+
+print("####Zadanie 13####")
+def zadanie13(n):
+    Q= np.round(10*np.random.rand(n,n))
+    F=[]
+    f=0
+    for i in range(len(Q)):
+        if (i%2)!=0:
+         F=Q[i]
+         for j in range(len(F)):
+             f=f+F[j]
+    return(Q,f)      
+print(zadanie13(3))
+print("##########################################")
+
+print("####Zadanie 14####")
+def lambada(x):
+    x=np.sin(2.0*x)
+    return(x)
+
+x = np.arange(-10.0, 10.0, 0.01)
+y = lambada(x)
+plt.plot(x,y,'r--') 
+print("##########################################")
+
+print("###Zadanie 15####")
+import zadanie15
+x = np.arange(-10,10,0.1)
+y = zadanie15.lambada_15(x)
+plt.plot(x,y,'g+')
+print("##########################################")
+
+print("###Zadanie 16 - z gwiazdką ####")
+
+print("###Zadanie 17####")
+import zadanie15
+x = np.arange(-10.0, 10.0, 0.01)
+y= 3*lambada(x)+zad15.lambada_15(x)
+plt.plot(x,y,'b*')
+print("##########################################")
+
+print("###Zadanie 18####")
+m1=np.array([[10,5,1,7],
+              [10,9,5,5],
+              [1,6,7,3],
+              [10,0,1,5]])
+m2=np.array([[34],
+              [44],
+              [25],
+              [27]])
+m3=np.linalg.solve(m1,m2)
+print(m3)
+print("##########################################")
+
+print("###Zadanie 19####")
+a = 1000000
+x = np.linspace(0, 2*np.pi, a)
+y = np.sin(x)
+cal = np.sum(2*np.pi/a*y)
+print(cal)
+print("##########################################")
